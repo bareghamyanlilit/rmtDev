@@ -1,8 +1,8 @@
 type ResultCountProps = {
-  totalNumbersOfItems: number;
+  totalNumbersOfResults: number;
 };
 export default function ResultsCount({
-  totalNumbersOfItems,
+  totalNumbersOfResults,
 }: ResultCountProps) {
-  return <p className="count"><span className="u-bold">{totalNumbersOfItems}</span> results</p>;
+  return <p className="count"><span className="u-bold">{totalNumbersOfResults}</span> results</p>;
 }
