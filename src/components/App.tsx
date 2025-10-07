@@ -16,9 +16,11 @@ import { useDebounce, useJobItems } from "../lib/hooks";
 
 function App() {
   const [searchText, setSearchText] = useState("");
-  const debounceSearchText = useDebounce(searchText,250);
-  const { jobItemsSliced, isLoading, totalNumbersOfResults } =
-    useJobItems(debounceSearchText);
+  const debounceSearchText = useDebounce(searchText, 250);
+  const { jobItems, isLoading } = useJobItems(debounceSearchText);
+
+  const totalNumbersOfResults = jobItems.length;
+  const jobItemsSliced = jobItems.slice(0, 7);
 
   return (
     <>
