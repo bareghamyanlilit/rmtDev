@@ -4,7 +4,7 @@ export type JobItem = {
   title: string;
   company: string;
   date: string;
-  relevenceScore: number;
+  relevanceScore: number;
   daysAgo: number;
 };
 
@@ -18,3 +18,7 @@ export type JobItemExpanded = JobItem & {
   coverImgUrl: string;
   companyUrl: string;
 };
+
+export type PageDirection = "next" | "previous";
+
+export type SortBy="relevant" | "recent";
