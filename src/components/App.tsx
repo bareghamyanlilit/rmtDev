@@ -85,7 +85,7 @@ function App() {
           />
         </Sidebar>
 
-        <JobItemContent />
+        <JobItemContent/>
       </Container>
 
       <Footer />

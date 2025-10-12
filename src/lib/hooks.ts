@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { JobItem, JobItemExpanded } from "./types";
 import { BASE_API_URL } from "./constants";
 import { useQuery } from "@tanstack/react-query";
 import { handleError } from "./utils";
+import { BookmarksContext } from "../contexts/BookmarksContextProvider";
 
 type JobItemApiResponse = {
     public: boolean,
@@ -57,7 +58,7 @@ const fetchJobItems = async (searchText: string): Promise<JobItemsApiResponse> =
     const data = await response.json();
     return data
 };
- 
+
 export function useJobItems(searchText: string) {
     const { data, isInitialLoading } = useQuery(
         ['job-items', searchText],
@@ -112,4 +113,31 @@ export function useActiveId() {
     }, []);
 
     return activeId;
+}
+
+export function useLocalStorage<T>(
+    key: string,
+    initialValue: T
+): [T, React.Dispatch<React.SetStateAction<T>>] {
+    const [value, setValue] = useState(() =>
+        JSON.parse(localStorage.getItem(key) || JSON.stringify(initialValue))
+    );
+
+    useEffect(() => {
+        localStorage.setItem(key, JSON.stringify(value));
+    }, [value, key]);
+
+    return [value, setValue] as const
+
+}
+
+
+export function useBookmarksContext() {
+    const context = useContext(BookmarksContext);
+    if (!context) {
+        throw new Error(
+            "useContext(BookmarksContext) must be used whitin a BookmarksContextProvider"
+        );
+    }
+    return context;
 }
