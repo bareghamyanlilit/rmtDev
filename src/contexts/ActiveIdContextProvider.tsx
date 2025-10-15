@@ -1,7 +1,7 @@
 import { createContext } from "react";
-import { useActiveId, useJobItems, useLocalStorage } from "../lib/hooks";
+import { useActiveId} from "../lib/hooks";
 
-type BookmarksContext = {
+type ActiveIdContext = {
   activeId:number|null
 };
 
